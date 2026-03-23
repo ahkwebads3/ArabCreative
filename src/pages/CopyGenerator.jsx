@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { Type, Loader2, Copy, CheckCircle2 } from 'lucide-react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-// ضع مفتاح الـ API الخاص بك هنا بين علامتي التنصيص
-const API_KEY = "AIzaSyBnJu8vRHjP8NbCagJNbDZbOnTV06_S7O8"; 
-const genAI = new GoogleGenerativeAI(API_KEY);
+// CopyGenerator.jsx
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
 const CopyGenerator = () => {
   const [productName, setProductName] = useState('');
