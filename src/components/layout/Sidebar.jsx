@@ -1,14 +1,15 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { Home, Briefcase, PlusSquare, Type, Image as ImageIcon, Settings } from 'lucide-react';
 
 const Sidebar = () => {
   const menuItems = [
-    { icon: Home, label: 'الرئيسية', active: true },
-    { icon: Briefcase, label: 'العلامات التجارية', active: false },
-    { icon: PlusSquare, label: 'إنشاء إعلان', active: false },
-    { icon: Type, label: 'النصوص الإعلانية', active: false },
-    { icon: ImageIcon, label: 'المكتبة', active: false },
-    { icon: Settings, label: 'الإعدادات', active: false },
+    { icon: Home, label: 'الرئيسية', path: '/' },
+    { icon: Briefcase, label: 'العلامات التجارية', path: '/brands' },
+    { icon: PlusSquare, label: 'إنشاء إعلان', path: '/generate' },
+    { icon: Type, label: 'النصوص الإعلانية', path: '/copy' },
+    { icon: ImageIcon, label: 'المكتبة', path: '/library' },
+    { icon: Settings, label: 'الإعدادات', path: '/settings' },
   ];
 
   return (
@@ -26,17 +27,20 @@ const Sidebar = () => {
         {menuItems.map((item, index) => {
           const Icon = item.icon;
           return (
-            <button
+            <NavLink
               key={index}
-              className={`w-full flex items-center px-4 py-3 rounded-xl transition-all duration-200 ${
-                item.active 
-                  ? 'bg-blue-50 text-blue-600 font-semibold' 
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-              }`}
+              to={item.path}
+              className={({ isActive }) =>
+                `w-full flex items-center px-4 py-3 rounded-xl transition-all duration-200 ${
+                  isActive
+                    ? 'bg-blue-50 text-blue-600 font-semibold'
+                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                }`
+              }
             >
               <Icon className="w-5 h-5 me-3" />
               <span>{item.label}</span>
-            </button>
+            </NavLink>
           );
         })}
       </nav>
